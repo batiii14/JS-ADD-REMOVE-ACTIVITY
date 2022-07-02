@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activities</title>
+</head>
+<body>
+    <center>
+    <h1>Add Activities</h1>
+    <form>
+        
+        
+    
+        <label for="addEl">Enter Activity</label>
+        <input type="text" id="addEl" required>
+        <br><br>
+       
+        <input type="button" value="Add Activity" id="ad">
+        <div id="myActivities"></div>
+        
+        <input type="button" id="del" value="Delete Selected Activities">
+        
+        </center>
+    </form>
+
+    <script>
+       
+        var count=0;
+        function addActivity(){
+            var myActivity=document.getElementById("addEl").value;
+            if(myActivity.length==0){
+                window.alert("Enter an activity!");
+                return;
+            }
+
+            var chckbox=document.createElement("input");
+            chckbox.setAttribute("type","checkbox");
+            chckbox.setAttribute("name","act"+count);
+
+            var activity=document.createElement("p");
+            activity.setAttribute("name","act"+count);
+            count++;
+
+            var node =document.createTextNode(myActivity);
+            activity.appendChild(node);
+            activity.appendChild(chckbox);
+
+            document.getElementById("myActivities").appendChild(activity);
+
+            document.getElementById("addEl").value=' ';
+
+            
+            
+
+        }
+
+        function deleteActivity(){
+            toDelete=document.getElementsByTagName("input");
+
+            for( var i=toDelete.length-1;i>=0;i--){
+                if(toDelete[i].checked)
+                {
+                    var inputName=toDelete[i].name;
+
+                    document.getElementsByName(inputName)[0].remove();
+
+                }
+
+            }
+
+          
+        }
+
+
+        document.getElementById("ad").addEventListener("click",addActivity);
+        document.getElementById("del").addEventListener("click",deleteActivity);
+    </script>
+
+    
+</body>
+</html>
